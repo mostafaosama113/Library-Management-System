@@ -29,8 +29,15 @@ public class Book {
     )
     private LocalDate publication_date;
     @Column(
-            name = "ISBN" ,
+            name = "isbn",
             nullable = false
     )
-    private String ISBN;
+    private String isbn;
+
+    public Book(String title, String author, LocalDate publication_date, String ISBN) {
+        this.title = title;
+        this.author = author;
+        this.publication_date = publication_date;
+        this.isbn = isbn;
+    }
 }
