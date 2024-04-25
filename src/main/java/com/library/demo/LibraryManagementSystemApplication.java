@@ -8,7 +8,7 @@ public class LibraryManagementSystemApplication {
 
 	public static void main(String[] args) {
 
-		git SpringApplication.run(LibraryManagementSystemApplication.class, args);
+		SpringApplication.run(LibraryManagementSystemApplication.class, args);
 	}
 
 }
