@@ -9,16 +9,15 @@ import java.time.LocalDate;
 @Entity
 @Data
 @NoArgsConstructor
-public class Record {
+@IdClass(BorrowingCompositeKey.class)
+public class Borrowing {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long record_id;
-
-
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "book_id")
     private Book book_id;
 
+    @Id
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "patron_id")
     private Patron patron_id;

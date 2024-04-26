@@ -1,8 +1,6 @@
 package com.library.demo.Services;
 
-import com.library.demo.Models.Book;
 import com.library.demo.Models.Patron;
-import com.library.demo.Repositories.BookRepository;
 import com.library.demo.Repositories.PatronRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
