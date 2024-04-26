@@ -3,8 +3,6 @@ package com.library.demo.Services;
 import com.library.demo.Models.Book;
 import com.library.demo.Repositories.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -39,22 +37,22 @@ public class BookService {
         bookRepository.deleteById(id);
         return Optional.of(book.get());
     }
-    public Optional<Book> editBook(Long id , Book new_book){
+    public Optional<Book> editBook(Long id , Book newBook){
         Optional<Book> book = bookRepository.findById(id);
         if(book.isEmpty()){
             return Optional.empty();
         }
-        if(new_book.getAuthor() != null){
-            book.get().setAuthor(new_book.getAuthor());
+        if(newBook.getAuthor() != null){
+            book.get().setAuthor(newBook.getAuthor());
         }
-        if(new_book.getTitle() != null){
-            book.get().setTitle(new_book.getTitle());
+        if(newBook.getTitle() != null){
+            book.get().setTitle(newBook.getTitle());
         }
-        if(new_book.getIsbn() != null){
-            book.get().setIsbn(new_book.getIsbn());
+        if(newBook.getIsbn() != null){
+            book.get().setIsbn(newBook.getIsbn());
         }
-        if(new_book.getPublication_date() != null){
-            book.get().setPublication_date(new_book.getPublication_date());
+        if(newBook.getPublication_date() != null){
+            book.get().setPublication_date(newBook.getPublication_date());
         }
         bookRepository.save(book.get());
         return Optional.of(book.get());

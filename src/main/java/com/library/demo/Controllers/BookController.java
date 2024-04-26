@@ -15,16 +15,13 @@ import java.util.Optional;
 @RequestMapping("/api/books")
 public class BookController {
 
-    private final BookService bookService
-            ;
-
+    private final BookService bookService;
     @Autowired
     BookController(BookService bookService){
         this.bookService = bookService;
     }
     @GetMapping
     public ResponseEntity<List<Book>> getAllBooks(){
-        System.out.println("hello");
         return new ResponseEntity<>(bookService.getAllBooks() , HttpStatus.OK);
     }
     @GetMapping("{id}")
