@@ -2,9 +2,12 @@ package com.library.demo.Controllers;
 
 import com.library.demo.Models.Book;
 import com.library.demo.Services.BookService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,6 +15,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/books")
+@Validated
 public class BookController {
 
     private final BookService bookService;
@@ -34,7 +38,7 @@ public class BookController {
     }
 
     @PostMapping
-    public ResponseEntity<Book> addBook(@RequestBody Book book){
+    public ResponseEntity<Book> addBook(@Valid @RequestBody Book book){
         boolean result = bookService.addBook(book);
         if(result){
             return new ResponseEntity<>(book , HttpStatus.OK);

@@ -2,9 +2,11 @@ package com.library.demo.Controllers;
 
 import com.library.demo.Models.Patron;
 import com.library.demo.Services.PatronsService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,6 +14,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/patrons")
+@Validated
 public class PatronControllers {
     private final PatronsService patronsService;
     @Autowired
@@ -34,7 +37,7 @@ public class PatronControllers {
     }
 
     @PostMapping
-    public ResponseEntity<Patron> addPatron(@RequestBody Patron patron){
+    public ResponseEntity<Patron> addPatron(@Valid @RequestBody Patron patron){
         boolean result = patronsService.addPatron(patron);
         if(result){
             return new ResponseEntity<>(patron , HttpStatus.OK);
@@ -43,7 +46,7 @@ public class PatronControllers {
         }
     }
     @DeleteMapping("{id}")
-    public ResponseEntity<Patron> addPatron(@PathVariable(name = "id") Long id){
+    public ResponseEntity<Patron> deletePatron(@PathVariable(name = "id") Long id){
         Optional<Patron> result = patronsService.deletePatron(id);
         if(result.isPresent()){
             return new ResponseEntity<>(result.get() , HttpStatus.OK);
