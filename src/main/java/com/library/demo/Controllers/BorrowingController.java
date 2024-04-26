@@ -13,7 +13,7 @@ import java.util.Map;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/borrow")
+@RequestMapping("/api")
 public class BorrowingController {
 
 
@@ -22,7 +22,7 @@ public class BorrowingController {
     BorrowingController(BorrowingService borrowingService){
         this.borrowingService = borrowingService;
     }
-    @PostMapping("{bookId}/patron/{patronId}")
+    @PostMapping("borrow/{bookId}/patron/{patronId}")
     public ResponseEntity addRecord(@PathVariable(name = "bookId") Long bookId , @PathVariable(name = "patronId") Long patronId){
         Optional<String> message = borrowingService.addRecord(bookId , patronId);
         if(message.isPresent()){
@@ -33,8 +33,15 @@ public class BorrowingController {
             return ResponseEntity.status(HttpStatus.OK).body("Book has been borrowed.");
         }
     }
-    @PutMapping("/api/return/{bookId}/patron/{patronId}")
-    public void editRecord(@PathVariable(name = "bookId") int bookId , @PathVariable(name = "patronId") int patronId){
-        
+    @PutMapping("return/{bookId}/patron/{patronId}")
+    public ResponseEntity editRecord(@PathVariable(name = "bookId") Long bookId , @PathVariable(name = "patronId") Long patronId){
+        Optional<String> message = borrowingService.returnBook(bookId , patronId);
+        if(message.isPresent()){
+            Map<String , String> response = new HashMap<>();
+            response.put("message" , message.get());
+            return new ResponseEntity(response , HttpStatus.BAD_REQUEST);
+        }else{
+            return ResponseEntity.status(HttpStatus.OK).body("Book has been returned.");
+        }
     }
 }
