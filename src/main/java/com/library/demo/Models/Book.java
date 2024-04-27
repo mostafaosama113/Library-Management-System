@@ -2,11 +2,13 @@ package com.library.demo.Models;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Data
@@ -18,7 +20,7 @@ public class Book {
     @Column(
             name = "title"
     )
-    @NotNull
+    @NotNull()
     private String title;
     @Column(
             name = "author"
@@ -36,7 +38,14 @@ public class Book {
     @NotNull
     private String isbn;
 
-    public Book(String title, String author, LocalDate publication_date, String ISBN) {
+    public Book(String title, String author, LocalDate publication_date, String isbn) {
+        this.title = title;
+        this.author = author;
+        this.publication_date = publication_date;
+        this.isbn = isbn;
+    }
+    public Book(Long book_id , String title, String author, LocalDate publication_date, String isbn) {
+        this.book_id = book_id;
         this.title = title;
         this.author = author;
         this.publication_date = publication_date;

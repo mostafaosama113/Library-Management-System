@@ -40,8 +40,14 @@ public class BookService {
         return Optional.of(book.get());
     }
     public Optional<Book> editBook(Long id , Book newBook){
+        if(id == null){
+            return Optional.empty();
+        }
         Optional<Book> book = bookRepository.findById(id);
-        if(book.isEmpty()){
+        if(book.isEmpty() ){
+            return Optional.empty();
+        }
+        if(newBook == null){
             return Optional.empty();
         }
         if(newBook.getAuthor() != null){

@@ -1,6 +1,7 @@
 package com.library.demo.Models;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,7 +20,7 @@ public class Borrowing{
     @Column(
             name = "borrowing_date"
     )
-    @NotNull
+    @NotBlank
     private LocalDate borrowing_date;
 
     @Column(

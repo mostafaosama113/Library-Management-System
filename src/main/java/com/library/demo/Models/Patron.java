@@ -1,6 +1,7 @@
 package com.library.demo.Models;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,12 +18,12 @@ public class Patron {
     @Column(
             name = "name"
     )
-    @NotNull
+    @NotBlank
     private String name;
     @Column(
             name = "phone_number"
     )
-    @NotNull
+    @NotBlank
     private String phone_number;
 
     public Patron(String name, String phone_number) {
