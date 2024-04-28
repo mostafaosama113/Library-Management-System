@@ -26,7 +26,9 @@ public class AuthenticationService {
     private final AuthenticationManager authenticationManager;
 
     public GenaricResponse register(RegisterRequest request) {
-
+        if(userReposirtory.findByEmail(request.getEmail()).isPresent()){
+            return new GenaricResponse(HttpStatus.CONFLICT.value(), "User is already existing.");
+        }
         User user = User.builder()
                 .email(request.getEmail())
                 .firstName(request.getFirstName())

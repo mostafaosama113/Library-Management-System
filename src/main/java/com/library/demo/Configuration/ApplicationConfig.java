@@ -36,10 +36,6 @@ public class ApplicationConfig {
     public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
         return  configuration.getAuthenticationManager();
     }
-//    @Bean
-//    public JwtUtil jwtUtil(){
-//        return  new JwtUtil();
-//    }
     @Bean
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
