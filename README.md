@@ -5,7 +5,9 @@ This project is a library management system built using Spring Boot and Java. It
 
 ## Getting Started
 To get started with this project, you can refer to the provided API endpoints:
-
+- **Authentication Endpoints**:
+    - POST /api/v1/auth/register: Register a new user in the system.
+    - POST /api/v1/auth/login: Login for an existent user.
 - **Book Management Endpoints**:
     - GET /api/books: Retrieve a list of all books.
     - GET /api/books/{id}: Retrieve details of a specific book by ID.
